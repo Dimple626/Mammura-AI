@@ -1,0 +1,38 @@
+# Backup folder contents (but keep the folder structure)
+backup/*
+
+# Model files (too large for GitHub)
+*.h5
+
+# Static folder contents (uploaded images)
+static/*
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.local
