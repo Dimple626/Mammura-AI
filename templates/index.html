@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mammura AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(135deg,#020617,#1e1b4b);
+    color:white;
+    text-align:center;
+}
+
+.container {
+    margin-top:60px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    padding:30px;
+    border-radius:20px;
+    width:350px;
+    margin:auto;
+    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+input[type=file] {
+    margin:20px;
+}
+
+button {
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ec4899;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    transform:scale(1.05);
+    background:#be185d;
+}
+
+img {
+    margin-top:15px;
+    width:200px;
+    border-radius:10px;
+}
+
+.loader {
+    display:none;
+    margin-top:15px;
+}
+
+.bar {
+    height:10px;
+    background:#333;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.fill {
+    height:100%;
+    width:0%;
+    background:#ec4899;
+    transition:1s;
+}
+
+.section {
+    margin-top:40px;
+    padding:20px;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.footer {
+    margin-top:40px;
+    font-size:12px;
+    color:#94a3b8;
+}
+</style>
+
+<script>
+function previewImage(event) {
+    const img = document.getElementById("preview");
+    img.src = URL.createObjectURL(event.target.files[0]);
+    img.style.display = "block";
+}
+
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🧠 Mammura AI</h1>
+    <p>Advanced Breast Cancer Detection System</p>
+
+    <div class="card">
+        <form action="/predict" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+            <input type="file" name="image" required onchange="previewImage(event)">
+            <br>
+            <button type="submit">🔍 Analyze</button>
+        </form>
+
+        <img id="preview" style="display:none;"/>
+
+        <div id="loader" class="loader">⏳ Analyzing Image...</div>
+
+        {% if prediction %}
+            <h3>{{ prediction }}</h3>
+
+            <div class="bar">
+                <div class="fill" style="width:80%"></div>
+            </div>
+        {% endif %}
+
+        {% if image %}
+            <img src="{{ image }}">
+        {% endif %}
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+        <h2>🧠 About Mammura AI</h2>
+        <p>
+            Mammura AI uses deep learning to analyze medical images and detect signs of breast cancer.
+            It helps in early detection by classifying images into benign or malignant categories.
+        </p>
+    </div>
+
+    <!-- BREAST CANCER -->
+    <div class="section">
+        <h2>🎗️ About Breast Cancer</h2>
+        <p>
+            Breast cancer is one of the most common cancers among women.
+            Early detection can save lives. Regular screening and awareness are very important.
+        </p>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section">
+        <h2>📩 Contact</h2>
+        <p>dimplechauhan312@gmail.com</p>
+    </div>
+
+    <div class="footer">
+        ⚠️ For educational purposes only
+    </div>
+</div>
+
+</body>
+</html>
